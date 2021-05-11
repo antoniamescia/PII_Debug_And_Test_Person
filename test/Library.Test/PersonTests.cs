@@ -6,16 +6,34 @@ namespace Tests
 {
     public class Tests
     {
+        private Person felipe;
         [SetUp]
         public void Setup()
         {
-            // Insertá tu código de inicialización aquí
+            this.felipe = new Person("Felipe","5.018.412-1");
         }
 
         [Test]
-        public void Test1() // Cambiá el nombre para indicar qué estás probando
+        public void NameNotNull() // Prueba que el codigo no permite ingresar nombres nulos.
         {
-            // Insertá tu código  de pruebaaquí
+            felipe.Name = null ;
+            Assert.IsNotNull(felipe.Name);
+        }
+
+        [Test]
+        public void NameNotEmpty() // Prueba que el codigo no permite ingresar nombres vacios.
+        {
+            felipe.Name = "" ;
+            Assert.IsNotEmpty(felipe.Name);
+        }
+        
+        [Test]
+        public void IdIsValidFunciona() // Prueba que la funcion IdIsValid no permite ingresar Id invalidas.
+        {
+            string IdIncorrecta = "1.234.567-8";
+            felipe.ID = IdIncorrecta ;
+
+            Assert.AreNotEqual(felipe.ID, IdIncorrecta);
         }
     }
 }
